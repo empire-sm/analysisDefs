@@ -14,3 +14,26 @@ var fft = FFT(LocalBuf(1024),source);
 
 }.play
 )
+
+
+
+
+
+
+
+
+
+
+
+
+(
+SynthDef("detectSilence-help", { arg out;
+    var z;
+	z = Mix.new(SoundIn.ar([0,1]));
+    DetectSilence.ar(z, doneAction: Done.freeSelf);
+    Out.ar(out, z);
+}).add;
+)
+
+Synth("detectSilence-help");
+
